@@ -78,6 +78,7 @@ function update(req, res) {
   Honeydo.findById(req.params.id)
   .then(honeydo => {
     if (honeydo.owner._id.equals(req.user.profile)) {
+      req.body.finished = !req.body.finished // Flip it for the checkbox
       Honeydo.findByIdAndUpdate(req.params.id, req.body, {new: true}) // new: true returns the modified document instead of the original
       .populate('owner')
       .then(updatedHoneydo => {
