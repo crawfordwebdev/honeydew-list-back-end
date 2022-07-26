@@ -2,13 +2,6 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-const timeSchema = new Schema({
-  hours: Number,
-  minutes: Number
-}, {
-  timestamps: true 
-})
-
 const hondeydoSchema = new Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId, 
@@ -22,10 +15,12 @@ const hondeydoSchema = new Schema({
     required: true
   },
   estimatedTimeToComplete: {
-    type: timeSchema, 
+    type: Number,
+    minimum: 0
   },
   actualTimeToComplete: {
-    type: timeSchema, 
+    type: Number, 
+    minimum: 0
   },
   finished: {
     type: Boolean, 
