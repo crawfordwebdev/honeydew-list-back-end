@@ -19,8 +19,7 @@ app.use(formData.parse())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/honeydew', honeydoRouter)
-
+app.use('/api/honeydews', honeydoRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: 'Not found' })
