@@ -29,7 +29,8 @@ const hondeydoSchema = new Schema({
   },
   finished: {
     type: Boolean, 
-    default: false
+    default: false,
+    required: true
   },
 }, {
   timestamps: true
