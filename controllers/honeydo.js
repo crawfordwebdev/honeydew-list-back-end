@@ -3,11 +3,8 @@ import { Honeydo } from '../models/honeydo.js'
 function create(req, res) {
   // add the profile ObjectID of the user to the body of request
   req.body.owner = req.user.profile
-  // create a honeydo
   Honeydo.create(req.body)
   .then(honeydo => {
-    console.log("honeydo created: ", honeydo)
-    // populate the 'owner' of honeydo
     Honeydo.findById(honeydo._id)
     .populate('owner')
     .then(populatedHoneydo => {
@@ -25,11 +22,8 @@ function create(req, res) {
 }
 
 function index(req, res) {
-  console.log('index req.user.profile', req.user.profile)
-
   Honeydo.find({owner: req.user.profile})
   .then(honeydos => {
-    console.log("index: honeydos found for user", honeydos)
     res.json(honeydos)
   })
   .catch(err => {
